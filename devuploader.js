@@ -5,7 +5,8 @@ const http = require('http');
 const { execSync } = require('child_process');
 
 const CONFIG_PATH = path.resolve(__dirname, 'devuploader.config.json');
-const DIST_DIR = path.resolve(__dirname, 'docs');
+const UPLOAD_FOLDER_NAME = 'docs'; // Folder in the repo where files are uploaded
+const DIST_DIR = path.resolve(__dirname, UPLOAD_FOLDER_NAME);
 
 function readConfig() {
     const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
@@ -82,8 +83,8 @@ function gitAddCommitPush(files) {
 }
 
 function printRawLinks(files) {
-    //const base = 'https://salvatorepreviti.github.io/git-dev-uploader/docs/';
-    const base = 'https://raw.githubusercontent.com/SalvatorePreviti/git-dev-uploader/main/docs/';
+    //const base = 'https://salvatorepreviti.github.io/git-dev-uploader/' + UPLOAD_FOLDER_NAME;
+    const base = 'https://raw.githubusercontent.com/SalvatorePreviti/git-dev-uploader/main/' + UPLOAD_FOLDER_NAME;
     console.log('uploaded:')
     files.forEach(f => {
         const rel = path.relative(DIST_DIR, f);
