@@ -84,7 +84,8 @@ function gitAddCommitPush(files) {
 
 function printRawLinks(files) {
     //const base = 'https://salvatorepreviti.github.io/git-dev-uploader/' + UPLOAD_FOLDER_NAME;
-    const base = 'https://raw.githubusercontent.com/SalvatorePreviti/git-dev-uploader/main/' + UPLOAD_FOLDER_NAME;
+    let base = 'https://raw.githubusercontent.com/SalvatorePreviti/git-dev-uploader/main/' + UPLOAD_FOLDER_NAME;
+    if (!base.endsWith('/')) base += '/';
     console.log('uploaded:')
     files.forEach(f => {
         const rel = path.relative(DIST_DIR, f);
