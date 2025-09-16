@@ -203,7 +203,7 @@ async function main() {
     const copied = await initialCopy(paths);
     if (copied.length) {
         gitAddCommitPush(copied);
-        printRawLinks(copied);
+        // Do not print links here; will be printed after initial commit
     }
     await initialCommit();
     const local = paths.filter(p => !p.startsWith('http'));
